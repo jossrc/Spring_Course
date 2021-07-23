@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Enviar Parámetros del request HTTP GET - URL</title>
+</head>
+<body>
+<h1>Enviar Parámetros del request HTTP GET - URL</h1>
+<ul>
+    <li>
+        <!--
+          Para referenciar una página se debe utilizar una
+          arroba y entre comillas dobles indicar la ruta,
+          si se encuentra en una carpeta también se le debe agregar
+          Y para enviar un query param se hace entre paréntesis
+          indicando el nombre de esta, si queremos agregar más, solo
+          se utilizan comas. Si el parámetro es de tipo string se utiliza
+          comillas simples
+         -->
+        <a th:href="@{/params/string(texto='Hola José')}">
+            /params/string?texto=Hola José
+        </a>
+    </li>
+
+    <li>
+        <a th:href="@{/params/string(texto='Que tal José')}">
+            /params/string?texto=Que tal José
+        </a>
+    </li>
+    <li>
+        <a th:href="@{/params/mix-params(saludo='¿Cómo estás José?',numero=10 )}">
+            /params/saludo?texto=Que tal José&numero=7
+        </a>
+    </li>
+    <li>
+        <a th:href="@{/params/mix-params(saludo='¿Cómo estás José?',numero=10 )}">
+            /params-request/saludo?texto=Que tal José&numero=7
+        </a>
+    </li>
+</ul>
+</body>
+</html>

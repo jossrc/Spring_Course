@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<!--
+  Para enviar los parámetros a la vista se debe agregar el namespace en el html
+ -->
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Usando recursos estáticos - CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <!--
+      Usamos el namespace th (establecido en el html) de tipo text,
+      y para obtener el valor de la variable creada en nuestro Model del
+      controller, utilizamos solo la llave(key) de la forma ${key}
+    -->
+    <title th:text="${titulo}"></title>
+</head>
+<body>
+  <h1 class="color-rojo" th:text="${titulo}"></h1>
+  <h2 class="color-azul">Decorando con estilos css recursos estáticos </h2>
+  <!-- Agregando imagen -->
+  <img th:src="@{/images/spring.svg}" alt="Spring" width="100px">
+</body>
+</html>
