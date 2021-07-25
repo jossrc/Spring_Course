@@ -4,6 +4,15 @@ import javax.validation.constraints.NotEmpty;
 
 public class Usuario {
 
+    // No se va a validar este atributo
+    private String identificador;
+
+    @NotEmpty
+    private String nombre;
+
+    @NotEmpty
+    private String apellido;
+
     @NotEmpty
     private String username;
 
@@ -35,5 +44,29 @@ public class Usuario {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getIdentificador() {
+        return identificador;
+    }
+
+    public void setIdentificador(String identificador) {
+        this.identificador = identificador;
     }
 }

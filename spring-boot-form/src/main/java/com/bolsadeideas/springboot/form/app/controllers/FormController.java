@@ -69,9 +69,18 @@ public class FormController {
     * */
     @GetMapping("/form2")
     public String form2(Model model) {
+
+        Usuario usuario = new Usuario();
+        // Estableciendo valores por defecto
+        usuario.setNombre("José");
+        usuario.setApellido("Robles");
+        // Este identificador no se está manejando, cuando se haga un post
+        // volverá como null, tener cuidado con los valores por defecto
+        usuario.setIdentificador("123.456.789-K");
+
         model.addAttribute("titulo", "Formulario 2 usuarios");
         // Se le envía al form2 para que sepa con que Clase trabajar
-        model.addAttribute("usuario", new Usuario());
+        model.addAttribute("usuario", usuario);
         return "form2";
     }
 

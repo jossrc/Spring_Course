@@ -24,6 +24,16 @@
   -->
   <form class="row g-3 mt-2" th:action="@{/form2}" th:object="${usuario}" method="post">
     <div class="col-12">
+      <label for="nombre" class="form-label">Nombre</label>
+      <input type="text" class="form-control" id="nombre" placeholder="Ingrese Usuario" th:field="*{nombre}">
+      <div th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="text-danger"></div>
+    </div>
+    <div class="col-12">
+      <label for="apellido" class="form-label">Apellido</label>
+      <input type="text" class="form-control" id="apellido" placeholder="Ingrese Usuario" th:field="*{apellido}">
+      <div th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}" class="text-danger"></div>
+    </div>
+    <div class="col-12">
       <label for="username" class="form-label">Username</label>
       <input type="text" class="form-control" id="username" placeholder="Ingrese Usuario" th:field="*{username}">
       <!-- Se verifica que no tenga errores y si existe indicarle a que campo es (nombre del atributo) -->

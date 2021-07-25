@@ -17,6 +17,16 @@
     <h3 class="mt-3" th:text="${titulo}"></h3>
     <form class="row g-3 mt-2" th:action="@{/form}" method="post">
       <div class="col-12">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" name="username" class="form-control" id="nombre" placeholder="Ingrese Nombre" th:value="${usuario.nombre}">
+        <div th:if="${error != null && error.containsKey('nombre')}" th:text="${error.get('nombre')}" class="text-danger"></div>
+      </div>
+      <div class="col-12">
+        <label for="apellido" class="form-label">Apellido</label>
+        <input type="text" name="apellido" class="form-control" id="apellido" placeholder="Ingrese Apellido" th:value="${usuario.apellido}">
+        <div th:if="${error != null && error.containsKey('apellido')}" th:text="${error.get('apellido')}" class="text-danger"></div>
+      </div>
+      <div class="col-12">
         <label for="username" class="form-label">Username</label>
         <input type="text" name="username" class="form-control" id="username" placeholder="Ingrese Usuario" th:value="${usuario.username}">
         <div th:if="${error != null && error.containsKey('username')}" th:text="${error.get('username')}" class="text-danger"></div>
