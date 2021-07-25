@@ -57,6 +57,32 @@ public class FormController {
             // cambiar en todos lados incluso en el model
             return "form";
         }
+
+        // Enviando al resultado
+        model.addAttribute("usuario", usuario);
+
+        return "resultado";
+    }
+
+    /*
+    * Otra forma de trabajar con los formularios pero más corto
+    * */
+    @GetMapping("/form2")
+    public String form2(Model model) {
+        model.addAttribute("titulo", "Formulario 2 usuarios");
+        // Se le envía al form2 para que sepa con que Clase trabajar
+        model.addAttribute("usuario", new Usuario());
+        return "form2";
+    }
+
+    @PostMapping("/form2")
+    public String form2(@Valid Usuario usuario, BindingResult result, Model model) {
+        model.addAttribute("titulo", "Resultado form 2");
+
+        if ( result.hasErrors() ) {
+            return "form2";
+        }
+        // Enviando al resultado
         model.addAttribute("usuario", usuario);
 
         return "resultado";
