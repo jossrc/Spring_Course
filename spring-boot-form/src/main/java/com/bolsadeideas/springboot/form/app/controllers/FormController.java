@@ -18,6 +18,7 @@ public class FormController {
     @GetMapping("/form")
     public String form(Model model) {
         model.addAttribute("titulo", "Formulario usuarios");
+        model.addAttribute("usuario", new Usuario());
         return "form";
     }
 
@@ -48,6 +49,12 @@ public class FormController {
                    "El campo ".concat(err.getField()).concat(" ").concat(err.getDefaultMessage()));
             });
             model.addAttribute("error", errores);
+            // El objeto Usuario se envía al form automáticamente, también se
+            // puede hacer manualmente, la diferencia con el otro es que este
+            // envía la Clase como 'camelCase' más no la instancia
+            // Si no se quiere hacer de esa manera se puede usar el @ModelAttribute() para
+            // cambiar el nombre y no tome el de la Clase, sin embargo se deberá
+            // cambiar en todos lados incluso en el model
             return "form";
         }
         model.addAttribute("usuario", usuario);
