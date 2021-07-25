@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+// import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class FormController {
@@ -16,16 +16,20 @@ public class FormController {
         return "form";
     }
 
+    /**
+     * Cuando se trabaja con un post desde un formulario
+     * podemos enviarle todos los datos de golpe a la clase
+     * que lo representa (solo funciona con una clase). Los name
+     * de los campos de un formulario deben ser los mismos que
+     * las propiedades de la clase para que funcione, además
+     * debe tener getters y setters.
+     * En caso que no lo necesitáramos podemos usar un @RequestParam
+     * Por ejemplo @RequestParam(name="txtUsername") String username
+     * en caso que el name tenga otra descripción
+     * o @RequestParam String email, si son los mismos
+     */
     @PostMapping("/form")
-    public String procesar(Model model,
-           @RequestParam(name="txtUsername") String username,
-           @RequestParam(name="txtEmail") String email,
-           @RequestParam(name="txtPassword") String password) {
-
-        Usuario usuario = new Usuario();
-        usuario.setUsername(username);
-        usuario.setEmail(email);
-        usuario.setPassword(password);
+    public String procesar(Usuario usuario, Model model) {
 
         model.addAttribute("titulo", "Resultado form");
         model.addAttribute("usuario", usuario);
