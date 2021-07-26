@@ -1,25 +1,29 @@
 package com.bolsadeideas.springboot.form.app.models.domain;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 public class Usuario {
 
     // No se va a validar este atributo
     private String identificador;
 
-    @NotEmpty
+    @NotEmpty(message = "El campo nombre no puede estar vacío")
     private String nombre;
 
-    @NotEmpty
+    @NotEmpty // El mensaje personalizado es opcional
     private String apellido;
 
-    @NotEmpty
+    @NotEmpty(message = "El campo username no puede estar vacío")
+    @Size(min = 3, max = 8, message = "La longitud del usuario debe estar entre 3 y 8 caracteres")
     private String username;
 
-    @NotEmpty
+    @NotEmpty(message = "El campo email no puede estar vacío")
+    @Email(message = "Ingrese un email con formato válido") // no usar el de hibernate
     private String email;
 
-    @NotEmpty
+    @NotEmpty(message = "El campo password no puede estar vacío")
     private String password;
 
     public String getUsername() {
