@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import javax.validation.Valid;
 import java.util.HashMap;
@@ -13,6 +15,7 @@ import java.util.Map;
 // import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
+@SessionAttributes("usuario") // Indicamos que key-value se almacenará en una session
 public class FormController {
 
     @GetMapping("/form")
@@ -85,7 +88,7 @@ public class FormController {
     }
 
     @PostMapping("/form2")
-    public String form2(@Valid Usuario usuario, BindingResult result, Model model) {
+    public String form2(@Valid Usuario usuario, BindingResult result, Model model, SessionStatus status) {
         model.addAttribute("titulo", "Resultado form 2");
 
         if ( result.hasErrors() ) {
@@ -93,6 +96,16 @@ public class FormController {
         }
         // Enviando al resultado
         model.addAttribute("usuario", usuario);
+
+        // EL @SessionAttributes Permite que los valores establecidos inicialmente no desaparezcan
+        // además si el valor cambia, actualiza su campo, muy útil para los id,
+        // identificador, ya que estos por lo general no están en un formulario
+        // También conserva los valores entre controladores, si queremos eso no debemos
+        // limpiar la session
+
+        // El status.setComplete limpia la session y libera recursos
+        // recomendado después de utilizar el valor almacenado allí
+        status.setComplete();
 
         return "resultado";
     }
