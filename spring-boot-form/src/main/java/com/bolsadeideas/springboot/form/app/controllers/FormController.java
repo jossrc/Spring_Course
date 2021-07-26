@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -25,6 +27,14 @@ public class FormController {
     * */
     @Autowired
     private UsuarioValidador validador;
+
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        // debemos usar addValidators para que use todos los tipos de  validaciones
+        // si usamos el setValidators es solo cuando tenemos una clase exclusiva encargada de eso
+        // ya que sino ignora los otros
+        binder.addValidators(validador);
+    }
 
     @GetMapping("/form")
     public String form(Model model) {
@@ -99,7 +109,8 @@ public class FormController {
     public String form2(@Valid Usuario usuario, BindingResult result, Model model, SessionStatus status) {
 
         // Aplicando las validaciones de la clase UsuarioValidador
-        validador.validate(usuario, result);
+        // Si usamos el InitBinder ya no es necesario hacer esto
+        // validador.validate(usuario, result);
 
         model.addAttribute("titulo", "Resultado form 2");
 
