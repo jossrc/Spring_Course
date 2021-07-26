@@ -1,6 +1,8 @@
 package com.bolsadeideas.springboot.form.app.controllers;
 
 import com.bolsadeideas.springboot.form.app.models.domain.Usuario;
+import com.bolsadeideas.springboot.form.app.validation.UsuarioValidador;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,6 +19,12 @@ import java.util.Map;
 @Controller
 @SessionAttributes("usuario") // Indicamos que key-value se almacenará en una session
 public class FormController {
+
+    /*
+    * Inyectando nuestra clase que contiene nuestras validaciones personalizadas
+    * */
+    @Autowired
+    private UsuarioValidador validador;
 
     @GetMapping("/form")
     public String form(Model model) {
@@ -89,6 +97,10 @@ public class FormController {
 
     @PostMapping("/form2")
     public String form2(@Valid Usuario usuario, BindingResult result, Model model, SessionStatus status) {
+
+        // Aplicando las validaciones de la clase UsuarioValidador
+        validador.validate(usuario, result);
+
         model.addAttribute("titulo", "Resultado form 2");
 
         if ( result.hasErrors() ) {

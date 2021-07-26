@@ -1,9 +1,6 @@
 package com.bolsadeideas.springboot.form.app.models.domain;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 public class Usuario {
 
@@ -27,11 +24,12 @@ public class Usuario {
     @Size(min = 3, max = 8, message = "La longitud del usuario debe estar entre 3 y 8 caracteres")
     private String username;
 
+    //@NotBlank  Permite validar que no esté vacío y no tenga espacios en blancos
     @NotEmpty(message = "El campo email no puede estar vacío")
     @Email // no usar el de hibernate
     private String email;
 
-    @NotEmpty(message = "El campo password no puede estar vacío")
+    //@NotEmpty Usando una clase para validar
     private String password;
 
     public String getUsername() {
