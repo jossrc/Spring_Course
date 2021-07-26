@@ -2,6 +2,8 @@ package com.bolsadeideas.springboot.form.app.models.domain;
 
 //import com.bolsadeideas.springboot.form.app.validation.IdentificadorRegex;
 
+import com.bolsadeideas.springboot.form.app.validation.Requerido;
+
 import javax.validation.constraints.*;
 
 public class Usuario {
@@ -20,7 +22,8 @@ public class Usuario {
       agregar mensajes personalizados de manera más eficiente,
       ya sea global o para cada atributo, sin hardcodear el mensaje
      */
-    @NotEmpty
+    //@NotEmpty
+    @Requerido
     private String apellido;
 
     @NotEmpty
