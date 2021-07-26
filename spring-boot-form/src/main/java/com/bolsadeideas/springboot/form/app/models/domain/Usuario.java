@@ -9,18 +9,24 @@ public class Usuario {
     // No se va a validar este atributo
     private String identificador;
 
-    @NotEmpty(message = "El campo nombre no puede estar vacío")
+    @NotEmpty
     private String nombre;
 
-    @NotEmpty // El mensaje personalizado es opcional
+    /*
+      El mensaje personalizado es opcional, además si
+      creamos un archivo llamado messages.properties podremos
+      agregar mensajes personalizados de manera más eficiente,
+      ya sea global o para cada atributo, sin hardcodear el mensaje
+     */
+    @NotEmpty
     private String apellido;
 
-    @NotEmpty(message = "El campo username no puede estar vacío")
+    @NotEmpty
     @Size(min = 3, max = 8, message = "La longitud del usuario debe estar entre 3 y 8 caracteres")
     private String username;
 
     @NotEmpty(message = "El campo email no puede estar vacío")
-    @Email(message = "Ingrese un email con formato válido") // no usar el de hibernate
+    @Email // no usar el de hibernate
     private String email;
 
     @NotEmpty(message = "El campo password no puede estar vacío")
