@@ -1,11 +1,14 @@
 package com.bolsadeideas.springboot.form.app.models.domain;
 
+//import com.bolsadeideas.springboot.form.app.validation.IdentificadorRegex;
+
 import javax.validation.constraints.*;
 
 public class Usuario {
 
     // No se va a validar este atributo
     //@Pattern(regexp = "[0-9]{2}[.][\\d]{3}[.][\\d]{3}[-][A-Z]")
+    //@IdentificadorRegex
     private String identificador;
 
     @NotEmpty
