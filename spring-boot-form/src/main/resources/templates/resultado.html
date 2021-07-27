@@ -52,6 +52,12 @@
         <span th:text="${usuario.password}"></span>
       </div>
     </li>
+    <li th:if="${usuario.pais != null}" class="list-group-item d-flex justify-content-between align-items-start">
+      <div class="ms-2 me-auto">
+        <div class="fw-bold">País</div>
+        <span th:text="${usuario.pais}"></span>
+      </div>
+    </li>
   </ol>
 </div>
 

@@ -51,6 +51,17 @@ public class Usuario {
     private Date fechaNacimiento;
     // El datepicker retorna el formato yyyy-MM-dd pero visualmente cambia según nuestra referencia local
 
+    @NotEmpty
+    private String pais;
+
+    public String getPais() {
+        return pais;
+    }
+
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
+
     public Date getFechaNacimiento() {
         return fechaNacimiento;
     }

@@ -59,6 +59,15 @@
       <input type="date" class="form-control" id="fechaNacimiento" placeholder="yyyy/MM/dd" th:field="*{fechaNacimiento}">
       <div th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}" class="text-danger"></div>
     </div>
+    <div class="col-md-6">
+      <label for="pais" class="form-label">País</label>
+      <select id="pais" th:field="*{pais}" class="form-control">
+        <option value="">--- Seleccionar ---</option>
+        <!-- tener cuidado no se refiere al atributo sino a la variable por cada iteración --->
+        <option th:each="pais: ${paises}" th:text="${pais}" th:value="${pais}"></option>
+      </select>
+      <div th:if="${#fields.hasErrors('pais')}" th:errors="*{pais}" class="text-danger"></div>
+    </div>
     <div class="col-12">
       <button type="submit" class="btn btn-primary">Enviar</button>
     </div>
