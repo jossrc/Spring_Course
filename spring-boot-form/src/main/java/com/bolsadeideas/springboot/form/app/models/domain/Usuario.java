@@ -3,8 +3,10 @@ package com.bolsadeideas.springboot.form.app.models.domain;
 //import com.bolsadeideas.springboot.form.app.validation.IdentificadorRegex;
 
 import com.bolsadeideas.springboot.form.app.validation.Requerido;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.*;
+import java.util.Date;
 
 public class Usuario {
 
@@ -42,6 +44,18 @@ public class Usuario {
     @Min(5)
     @Max(5000)
     private Integer cuenta;
+
+    @NotNull // Verificamos que no sea null
+    @DateTimeFormat(pattern = "yyyy/MM/dd") // Que cumpla el siguiente formato (retorna null sino cumple)
+    private Date fechaNacimiento;
+
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
 
     public Integer getCuenta() {
         return cuenta;
