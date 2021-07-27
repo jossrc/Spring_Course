@@ -49,6 +49,11 @@
       <input type="password" class="form-control" id="password" th:field="*{password}">
       <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></div>
     </div>
+    <div class="col-md-6">
+      <label for="cuenta" class="form-label">Cuenta</label>
+      <input type="number" class="form-control" id="cuenta" placeholder="Ingrese Cuenta" th:field="*{cuenta}">
+      <div th:if="${#fields.hasErrors('cuenta')}" th:errors="*{cuenta}" class="text-danger"></div>
+    </div>
     <div class="col-12">
       <button type="submit" class="btn btn-primary">Enviar</button>
     </div>

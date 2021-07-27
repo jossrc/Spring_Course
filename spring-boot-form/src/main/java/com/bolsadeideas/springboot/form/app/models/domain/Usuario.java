@@ -38,6 +38,19 @@ public class Usuario {
     //@NotEmpty Usando una clase para validar
     private String password;
 
+    @NotNull // exclusivo para objetos no para String, para int se usa Min(num)
+    @Min(5)
+    @Max(5000)
+    private Integer cuenta;
+
+    public Integer getCuenta() {
+        return cuenta;
+    }
+
+    public void setCuenta(Integer cuenta) {
+        this.cuenta = cuenta;
+    }
+
     public String getUsername() {
         return username;
     }
