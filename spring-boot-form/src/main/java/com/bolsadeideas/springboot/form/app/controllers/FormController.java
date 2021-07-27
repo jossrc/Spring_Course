@@ -1,5 +1,6 @@
 package com.bolsadeideas.springboot.form.app.controllers;
 
+import com.bolsadeideas.springboot.form.app.editors.NombreMayusculaEditor;
 import com.bolsadeideas.springboot.form.app.models.domain.Usuario;
 import com.bolsadeideas.springboot.form.app.validation.UsuarioValidador;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,9 @@ public class FormController {
         // Seleccionamos el tipo de dato, agregamos la variable y hacemos que acepte vacío (para que el @NotNull lo valide)
         // Esto afecta a todos, si queremos validar un campo, se le agrega como segundo parámetro
         binder.registerCustomEditor(Date.class, "fechaNacimiento", new CustomDateEditor(dateFormat, true));
+
+        // Usando nuestro Editor personalizado (lo establece a mayúscula)
+        binder.registerCustomEditor(String.class, "nombre" , new NombreMayusculaEditor());
     }
 
     @GetMapping("/form")
