@@ -3,6 +3,7 @@ package com.bolsadeideas.springboot.form.app.controllers;
 import com.bolsadeideas.springboot.form.app.models.domain.Usuario;
 import com.bolsadeideas.springboot.form.app.validation.UsuarioValidador;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import javax.validation.Valid;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 // import org.springframework.web.bind.annotation.RequestParam;
@@ -34,6 +37,14 @@ public class FormController {
         // si usamos el setValidators es solo cuando tenemos una clase exclusiva encargada de eso
         // ya que sino ignora los otros
         binder.addValidators(validador);
+
+        // Otra manera de validar fechas sin usar el @DateTimeFormat
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        dateFormat.setLenient(false);// Define si el analizador es estricto o tolerante, (false - estricto,
+        // true permite un formato incorrecto y lo convierte)
+        // Seleccionamos el tipo de dato, agregamos la variable y hacemos que acepte vacío (para que el @NotNull lo valide)
+        // Esto afecta a todos, si queremos validar un campo, se le agrega como segundo parámetro
+        binder.registerCustomEditor(Date.class, "fechaNacimiento", new CustomDateEditor(dateFormat, true));
     }
 
     @GetMapping("/form")

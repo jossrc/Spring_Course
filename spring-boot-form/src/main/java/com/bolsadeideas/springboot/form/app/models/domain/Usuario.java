@@ -45,9 +45,9 @@ public class Usuario {
     @Max(5000)
     private Integer cuenta;
 
+    //@DateTimeFormat(pattern = "yyyy-MM-dd") // Que cumpla el siguiente formato (retorna null sino cumple)
     @NotNull // Verificamos que no sea null
     @Future // Debe aceptar fecha futura no pasada ni presente
-    @DateTimeFormat(pattern = "yyyy-MM-dd") // Que cumpla el siguiente formato (retorna null sino cumple)
     private Date fechaNacimiento;
     // El datepicker retorna el formato yyyy-MM-dd pero visualmente cambia según nuestra referencia local
 
