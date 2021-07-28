@@ -51,6 +51,19 @@ public class FormController {
         return Arrays.asList("España", "Perú", "Chile", "Colombia", "Venezuela");
     }
 
+    @ModelAttribute("paisesMap")
+    public Map<String, String> paisesMap() {
+        Map<String, String> paises = new HashMap<String, String>();
+        paises.put("ES", "España");
+        paises.put("MX", "México");
+        paises.put("CL", "Chile");
+        paises.put("AR", "Argentina");
+        paises.put("PE", "Perú");
+        paises.put("VE", "Venezuela");
+
+        return paises;
+    }
+
     @GetMapping("/form")
     public String form(Model model) {
         model.addAttribute("titulo", "Formulario usuarios");

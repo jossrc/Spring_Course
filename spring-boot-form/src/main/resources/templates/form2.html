@@ -68,6 +68,15 @@
       </select>
       <div th:if="${#fields.hasErrors('pais')}" th:errors="*{pais}" class="text-danger"></div>
     </div>
+    <div class="col-md-6">
+      <label for="paisesMap" class="form-label">País Map</label>
+      <select id="paisesMap" th:field="*{pais}" class="form-control">
+        <option value="">--- Seleccionar ---</option>
+        <!-- Usando un map para listar un select --->
+        <option th:each="pais: ${paisesMap.entrySet()}" th:text="${pais.value}" th:value="${pais.key}"></option>
+      </select>
+      <div th:if="${#fields.hasErrors('pais')}" th:errors="*{pais}" class="text-danger"></div>
+    </div>
     <div class="col-12">
       <button type="submit" class="btn btn-primary">Enviar</button>
     </div>
