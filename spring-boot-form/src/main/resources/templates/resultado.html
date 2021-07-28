@@ -58,6 +58,16 @@
         <span th:text="${usuario.pais}"></span>
       </div>
     </li>
+    <li th:if="${usuario.fechaNacimiento != null}" class="list-group-item d-flex justify-content-between align-items-start">
+      <div class="ms-2 me-auto">
+        <div class="fw-bold">Fecha Nacimiento</div>
+        <!--
+          Estableciendo un formato visualmente usando helpers de thymeleaf
+          se puede usar format o calendar, ambos funcionan igual
+         -->
+        <span th:text="${#dates.format(usuario.fechaNacimiento, 'dd/MM/yyyy')}"></span>
+      </div>
+    </li>
   </ol>
 </div>
 
