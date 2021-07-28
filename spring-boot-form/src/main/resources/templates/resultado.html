@@ -68,6 +68,12 @@
         <span th:text="${#dates.format(usuario.fechaNacimiento, 'dd/MM/yyyy')}"></span>
       </div>
     </li>
+    <li th:if="${usuario.pais.id != null}" class="list-group-item d-flex justify-content-between align-items-start">
+      <div class="ms-2 me-auto">
+        <div class="fw-bold">País ID</div>
+        <span th:text="${usuario.pais.id}"></span>
+      </div>
+    </li>
   </ol>
 </div>
 

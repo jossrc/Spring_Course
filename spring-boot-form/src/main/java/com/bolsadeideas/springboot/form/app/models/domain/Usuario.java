@@ -5,6 +5,7 @@ package com.bolsadeideas.springboot.form.app.models.domain;
 import com.bolsadeideas.springboot.form.app.validation.Requerido;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.util.Date;
 
@@ -51,14 +52,14 @@ public class Usuario {
     private Date fechaNacimiento;
     // El datepicker retorna el formato yyyy-MM-dd pero visualmente cambia según nuestra referencia local
 
-    @NotEmpty
-    private String pais;
+    @Valid
+    private Pais pais;
 
-    public String getPais() {
+    public Pais getPais() {
         return pais;
     }
 
-    public void setPais(String pais) {
+    public void setPais(Pais pais) {
         this.pais = pais;
     }
 
