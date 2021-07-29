@@ -6,7 +6,7 @@ public class Pais {
 
     // Se validan sus campos si se usa en un form también
 
-    @NotNull
+    //@NotNull
     private Integer id;
     private String codigo;
     private String nombre;

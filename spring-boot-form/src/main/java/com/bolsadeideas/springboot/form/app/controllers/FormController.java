@@ -1,6 +1,7 @@
 package com.bolsadeideas.springboot.form.app.controllers;
 
 import com.bolsadeideas.springboot.form.app.editors.NombreMayusculaEditor;
+import com.bolsadeideas.springboot.form.app.editors.PaisPropertyEditor;
 import com.bolsadeideas.springboot.form.app.models.domain.Pais;
 import com.bolsadeideas.springboot.form.app.models.domain.Usuario;
 import com.bolsadeideas.springboot.form.app.services.PaisService;
@@ -32,6 +33,9 @@ public class FormController {
     @Autowired
     private PaisService paisService;
 
+    @Autowired
+    private PaisPropertyEditor paisEditor;
+
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         // debemos usar addValidators para que use todos los tipos de  validaciones
@@ -49,6 +53,8 @@ public class FormController {
 
         // Usando nuestro Editor personalizado (lo establece a mayúscula)
         binder.registerCustomEditor(String.class, "nombre" , new NombreMayusculaEditor());
+
+        binder.registerCustomEditor(Pais.class, "pais", paisEditor);
     }
 
     @ModelAttribute("listaPaises")

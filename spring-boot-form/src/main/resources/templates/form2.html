@@ -78,14 +78,14 @@
       <div th:if="${#fields.hasErrors('pais')}" th:errors="*{pais}" class="text-danger"></div>
     </div>
     <div class="col-md-6">
-      <label for="pais.id" class="form-label">País Clase</label>
+      <label for="pais" class="form-label">País Clase</label>
       <!-- Se relaciona con el ID ya que el atributo es de tipo Pais, y se intenta verificar la información -->
-      <select id="pais" th:field="*{pais.id}" class="form-control">
+      <select id="pais" th:field="*{pais}" class="form-control">
         <option value="">--- Seleccionar ---</option>
         <!-- Usando una lista de Paises --->
         <option th:each="pais: ${listaPaises}" th:text="${pais.nombre}" th:value="${pais.id}"></option>
       </select>
-      <div th:if="${#fields.hasErrors('pais.id')}" th:errors="*{pais.id}" class="text-danger"></div>
+      <div th:if="${#fields.hasErrors('pais')}" th:errors="*{pais}" class="text-danger"></div>
     </div>
     <div class="col-12">
       <button type="submit" class="btn btn-primary">Enviar</button>

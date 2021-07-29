@@ -52,7 +52,7 @@ public class Usuario {
     private Date fechaNacimiento;
     // El datepicker retorna el formato yyyy-MM-dd pero visualmente cambia según nuestra referencia local
 
-    @Valid
+    @NotNull
     private Pais pais;
 
     public Pais getPais() {
