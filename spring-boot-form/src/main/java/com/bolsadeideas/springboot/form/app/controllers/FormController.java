@@ -2,6 +2,7 @@ package com.bolsadeideas.springboot.form.app.controllers;
 
 import com.bolsadeideas.springboot.form.app.editors.NombreMayusculaEditor;
 import com.bolsadeideas.springboot.form.app.editors.PaisPropertyEditor;
+import com.bolsadeideas.springboot.form.app.editors.RolesEditor;
 import com.bolsadeideas.springboot.form.app.models.domain.Pais;
 import com.bolsadeideas.springboot.form.app.models.domain.Role;
 import com.bolsadeideas.springboot.form.app.models.domain.Usuario;
@@ -41,6 +42,9 @@ public class FormController {
     @Autowired
     private RoleService roleService;
 
+    @Autowired
+    private RolesEditor roleEditor;
+
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         // debemos usar addValidators para que use todos los tipos de  validaciones
@@ -60,6 +64,8 @@ public class FormController {
         binder.registerCustomEditor(String.class, "nombre" , new NombreMayusculaEditor());
 
         binder.registerCustomEditor(Pais.class, "pais", paisEditor);
+
+        binder.registerCustomEditor(Role.class, "roles", roleEditor);
     }
 
     @ModelAttribute("listaPaises")
