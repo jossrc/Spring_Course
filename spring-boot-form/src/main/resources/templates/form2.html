@@ -113,6 +113,24 @@
       <div th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}" class="text-danger"></div>
     </div>
     <div class="col-12">
+      <label>Habilitar</label>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" th:field="*{habilitar}" id="habilitar"/>
+        <label class="form-check-label" th:for="habilitar" th:text="Suscribirme"></label>
+      </div>
+    </div>
+    <div class="col-12">
+      <label>Género</label>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" id="genero1" th:field="*{genero}" value="Hombre" checked>
+        <label class="form-check-label" for="genero1" th:text="Hombre"></label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" id="genero2" th:field="*{genero}" value="Mujer">
+        <label class="form-check-label" for="genero2" th:text="Mujer"></label>
+      </div>
+    </div>
+    <div class="col-12">
       <button type="submit" class="btn btn-primary">Enviar</button>
     </div>
   </form>

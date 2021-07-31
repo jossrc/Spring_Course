@@ -179,6 +179,8 @@ public class FormController {
         // volverá como null, tener cuidado con los valores por defecto
         usuario.setIdentificador("123.456.789-K");
 
+        usuario.setHabilitar(true);
+
         model.addAttribute("titulo", "Formulario 2 usuarios");
         // Se le envía al form2 para que sepa con que Clase trabajar
         model.addAttribute("usuario", usuario);
