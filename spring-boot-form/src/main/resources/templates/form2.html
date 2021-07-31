@@ -88,6 +88,23 @@
       <div th:if="${#fields.hasErrors('pais')}" th:errors="*{pais}" class="text-danger"></div>
     </div>
     <div class="col-12">
+      <label>Roles</label>
+      <div class="form-check" th:each="role: ${listaRolesString}">
+        <input class="form-check-input" type="checkbox" th:field="*{roles}" th:value="${role}">
+        <!-- Se concatena roles + id -->
+        <label class="form-check-label" th:for="${#ids.prev('roles')}" th:text="${role}"></label>
+      </div>
+      <div th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}" class="text-danger"></div>
+    </div>
+    <div class="col-12">
+      <label>Roles Map</label>
+      <div class="form-check" th:each="role: ${listaRolesMap.entrySet()}">
+        <input class="form-check-input" type="checkbox" th:field="*{roles}" th:value="${role.key}">
+        <label class="form-check-label" th:for="${#ids.prev('roles')}" th:text="${role.value}"></label>
+      </div>
+      <div th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}" class="text-danger"></div>
+    </div>
+    <div class="col-12">
       <button type="submit" class="btn btn-primary">Enviar</button>
     </div>
   </form>

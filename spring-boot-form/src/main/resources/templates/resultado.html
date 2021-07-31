@@ -75,6 +75,10 @@
       </div>
     </li>
   </ol>
+
+  <ul class="list-group mt-2">
+    <li class="list-group-item" th:each="role: ${usuario.roles}" th:text="${role}"></li>
+  </ul>
 </div>
 
 <script

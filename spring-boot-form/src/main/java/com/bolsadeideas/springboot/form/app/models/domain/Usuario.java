@@ -8,6 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.util.Date;
+import java.util.List;
 
 public class Usuario {
 
@@ -54,6 +55,17 @@ public class Usuario {
 
     @NotNull
     private Pais pais;
+
+    @NotEmpty // Verifica que la lista no sea vacío
+    private List<String> roles;
+
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
+    }
 
     public Pais getPais() {
         return pais;
