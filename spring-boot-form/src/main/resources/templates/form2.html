@@ -105,6 +105,14 @@
       <div th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}" class="text-danger"></div>
     </div>
     <div class="col-12">
+      <label>Roles Class</label>
+      <div class="form-check" th:each="role: ${listaRoles}">
+        <input class="form-check-input" type="checkbox" th:field="*{roles}" th:value="${role.id}">
+        <label class="form-check-label" th:for="${#ids.prev('roles')}" th:text="${role.nombre}"></label>
+      </div>
+      <div th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}" class="text-danger"></div>
+    </div>
+    <div class="col-12">
       <button type="submit" class="btn btn-primary">Enviar</button>
     </div>
   </form>
