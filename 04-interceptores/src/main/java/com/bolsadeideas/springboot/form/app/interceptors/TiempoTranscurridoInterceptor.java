@@ -58,6 +58,10 @@ public class TiempoTranscurridoInterceptor implements HandlerInterceptor {
                            Object handler, ModelAndView modelAndView)
             throws Exception {
 
+        if (request.getMethod().equalsIgnoreCase("post")) {
+            return;
+        }
+
         // Se obtiene el tiempo actual (final) en milisegundos
         long tiempoFin = System.currentTimeMillis();
 
