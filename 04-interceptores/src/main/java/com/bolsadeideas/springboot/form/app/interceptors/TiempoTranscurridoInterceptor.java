@@ -24,6 +24,10 @@ public class TiempoTranscurridoInterceptor implements HandlerInterceptor {
                              Object handler)
             throws Exception {
 
+        if (request.getMethod().equalsIgnoreCase("post")) {
+            return true;
+        }
+
         // Verificamos en consola en que método se realizó la inyección
         if (handler instanceof HandlerMethod) {
             HandlerMethod method = (HandlerMethod) handler;
