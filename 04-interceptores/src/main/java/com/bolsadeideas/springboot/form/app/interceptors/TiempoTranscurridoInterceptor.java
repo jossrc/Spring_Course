@@ -3,6 +3,7 @@ package com.bolsadeideas.springboot.form.app.interceptors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -11,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Random;
 
 // Para hacer inyecciones al controlador X
-@Component
+@Component("tiempoTranscurridoInterceptor")
 public class TiempoTranscurridoInterceptor implements HandlerInterceptor {
 
     // Establecemos un Logger para mostrar la info por la consola
@@ -22,6 +23,12 @@ public class TiempoTranscurridoInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
                              Object handler)
             throws Exception {
+
+        // Verificamos en consola en que método se realizó la inyección
+        if (handler instanceof HandlerMethod) {
+            HandlerMethod method = (HandlerMethod) handler;
+            logger.info("Es un método del controlador: " + method.getMethod().getName());
+        }
 
         logger.info("TiempoTranscurridoInterceptor: preHandle() entrando...");
 
@@ -56,8 +63,9 @@ public class TiempoTranscurridoInterceptor implements HandlerInterceptor {
         // Calculamos el tiempo transcurrido
         long tiempoTranscurrido = tiempoFin - tiempoInicio;
 
-        // Enviamos el tiempo transcurrido a la vista
-        if (modelAndView != null) {
+        // Verificamos si es un método válido y que no sea nulo (el handler se inyecta en todos los archivos)
+        if (handler instanceof HandlerMethod && modelAndView != null) {
+            // Enviamos el tiempo transcurrido a la vista
             modelAndView.addObject("tiempoTranscurrido", tiempoTranscurrido);
         }
 

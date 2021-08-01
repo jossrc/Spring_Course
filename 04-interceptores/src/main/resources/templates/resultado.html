@@ -7,6 +7,10 @@
 </head>
 <body>
 
+	<div class="alert alert-success">
+		<span th:text="'Tiempo Transcurrido: ' + ${tiempoTranscurrido} + 'en milisegundos'" ></span>
+	</div>
+
 	<div class="container">
 	    <a th:href="@{/form}" class="btn btn-success btn-lg my-3">volver</a>
 		<ul class="list-group my-2">
