@@ -49,6 +49,9 @@ public class TiempoTranscurridoInterceptor implements HandlerInterceptor {
         // Esperamos la ejecución
         Thread.sleep(demora);
 
+        // Si es false se recomienda hacer una redirección - Obtenemos la ruta actual (base) y la redirigimos a otra página
+        // response.sendRedirect(request.getContextPath().concat("/login"));
+
         // Cuando es true continúa con la ejecución, si es false finaliza el proceso
         return true;
     }
