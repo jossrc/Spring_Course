@@ -4,15 +4,12 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ha ocurrido un error Oops!</title>
+  <title th:text="${error}"></title>
 </head>
 <body>
-   <h3>Ha ocurrido un error Oops!</h3>
+   <h3 th:text="${error}"></h3>
    <div th:text="${message}"></div>
    <div th:text="${status}"></div>
    <div th:text="${timestamp}"></div>
-   <hr/>
-   <!-- No se recomienda incluir -->
-   <div th:text="${trace}"></div>
 </body>
 </html>
