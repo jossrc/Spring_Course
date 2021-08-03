@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 // Permite inyectar en el controlador
 @Service
@@ -33,9 +34,16 @@ public class UsuarioServiceImpl implements UsuarioService {
     public Usuario obtenerPorId(Integer id) {
 
         Usuario resultado = this.lista.stream()
-                .filter( usuario -> Objects.equals(usuario.getId(), id)) // solo porque es un objeto sino usar ==
-                .findAny().orElse(null);
+                .filter( usuario -> Objects.equals(usuario.getId(), id))
+                .findFirst().orElse(null);// solo porque es un objeto sino usar ==
 
         return resultado;
+    }
+
+    @Override
+    public Optional<Usuario> obtenerPorIdOptional(Integer id) {
+
+        Usuario usuario = this.obtenerPorId(id);
+        return Optional.ofNullable(usuario); // acepta nulos y retorna un objeto optional
     }
 }
