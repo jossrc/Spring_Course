@@ -9,7 +9,7 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 // Es una anotación de Spring para marcar la clase como un componente de persistencia de acceso a datos
-@Repository // extiende de Components
+@Repository("clienteDaoJPA") // extiende de Components
 public class ClienteDaoImpl implements IClienteDao {
 
     // El EntityManager se encarga de manejar las clases de entidades (no a la bd sino a la entidad - clase)
