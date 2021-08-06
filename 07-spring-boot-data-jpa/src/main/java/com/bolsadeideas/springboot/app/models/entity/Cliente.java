@@ -1,5 +1,7 @@
 package com.bolsadeideas.springboot.app.models.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -21,13 +23,8 @@ public class Cliente implements Serializable {
     // Indicamos que la columna tiene otro nombre, en caso contrario será igual a la propiedad
     @Column(name="create_at")
     @Temporal(TemporalType.DATE) // Indica el formato que tendrá la fecha a guardar en la BD
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createdAt;
-
-    // se ejecuta antes de insertarlo en la BD
-    @PrePersist
-    private void prePersist() {
-        createdAt = new Date();
-    }
 
     public Long getId() {
         return id;

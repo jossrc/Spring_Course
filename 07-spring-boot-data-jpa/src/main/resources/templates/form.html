@@ -54,6 +54,16 @@
             th:field="*{email}"
           />
         </div>
+        <div class="col-12">
+          <label for="txtFecha" class="form-label">Fecha</label>
+          <input
+            type="date"
+            class="form-control"
+            id="txtFecha"
+            placeholder="yyyy-MM-dd"
+            th:field="*{createdAt}"
+          />
+        </div>
 
         <div class="col-12">
           <button type="submit" class="btn btn-primary">Registrar</button>
