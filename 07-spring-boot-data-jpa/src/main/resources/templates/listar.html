@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -13,38 +13,16 @@
     <title th:text="${titulo}"></title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Spring Boot</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSpring"
-          aria-controls="navbarSpring"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSpring">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" th:href="@{/listar}">Clientes</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <nav th:replace="components/navbar :: navbar"></nav>
 
     <div class="container mt-3">
       <h1
         class="text-primary border-success border-bottom"
         th:text="${titulo}"
       ></h1>
+
+      <a th:href="@{/form}" class="btn btn-success my-2">+ Crear Cliente</a>
+      
       <div class="table-responsive text-wrap mt-2">
         <table class="table table-hover">
           <thead>

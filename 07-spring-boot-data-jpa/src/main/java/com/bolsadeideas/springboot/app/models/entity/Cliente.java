@@ -23,6 +23,12 @@ public class Cliente implements Serializable {
     @Temporal(TemporalType.DATE) // Indica el formato que tendrá la fecha a guardar en la BD
     private Date createdAt;
 
+    // se ejecuta antes de insertarlo en la BD
+    @PrePersist
+    private void prePersist() {
+        createdAt = new Date();
+    }
+
     public Long getId() {
         return id;
     }
