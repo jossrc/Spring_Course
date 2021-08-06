@@ -3,6 +3,10 @@ package com.bolsadeideas.springboot.app.models.entity;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -16,12 +20,20 @@ public class Cliente implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Identificamos que será identity
     private Long id;
 
+    @NotEmpty // Para String
+    @Size(min = 3, max = 30)
     private String nombre;
+
+    @NotEmpty
+    @Size(min = 3, max = 30)
     private String apellido;
+
+    @NotEmpty
+    @Email
     private String email;
 
-    // Indicamos que la columna tiene otro nombre, en caso contrario será igual a la propiedad
-    @Column(name="create_at")
+    @NotNull // Para object
+    @Column(name="create_at") // Indicamos que la columna tiene otro nombre, en caso contrario será igual a la propiedad
     @Temporal(TemporalType.DATE) // Indica el formato que tendrá la fecha a guardar en la BD
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createdAt;

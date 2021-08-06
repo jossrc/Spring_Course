@@ -32,7 +32,13 @@
             id="txtNombre"
             placeholder="Ingrese nombre"
             th:field="*{nombre}"
+            th:errorclass="'is-invalid'"
           />
+          <div
+            class="invalid-feedback"
+            th:if="${#fields.hasErrors('nombre')}"
+            th:errors="*{nombre}"
+          ></div>
         </div>
         <div class="col-12">
           <label for="txtApellido" class="form-label">Apellido</label>
@@ -42,17 +48,29 @@
             id="txtApellido"
             placeholder="Ingrese apellido"
             th:field="*{apellido}"
+            th:errorclass="'is-invalid'"
           />
+          <div
+            class="invalid-feedback"
+            th:if="${#fields.hasErrors('apellido')}"
+            th:errors="*{apellido}"
+          ></div>
         </div>
         <div class="col-12">
           <label for="txtEmail" class="form-label">Email</label>
           <input
-            type="email"
+            type="text"
             class="form-control"
             id="txtEmail"
             placeholder="Ingrese email"
             th:field="*{email}"
+            th:errorclass="'is-invalid'"
           />
+          <div
+            class="invalid-feedback"
+            th:if="${#fields.hasErrors('email')}"
+            th:errors="*{email}"
+          ></div>
         </div>
         <div class="col-12">
           <label for="txtFecha" class="form-label">Fecha</label>
@@ -62,7 +80,13 @@
             id="txtFecha"
             placeholder="yyyy-MM-dd"
             th:field="*{createdAt}"
+            th:errorclass="'is-invalid'"
           />
+          <div
+            class="invalid-feedback"
+            th:if="${#fields.hasErrors('createdAt')}"
+            th:errors="*{createdAt}"
+          ></div>
         </div>
 
         <div class="col-12">

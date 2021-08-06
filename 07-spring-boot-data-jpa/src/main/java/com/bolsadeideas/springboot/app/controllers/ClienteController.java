@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.Valid;
 import java.util.Map;
 
 @Controller
@@ -27,6 +29,9 @@ public class ClienteController {
 
     @GetMapping("/form")
     public String crear(Map<String, Object> model){
+
+        // podemos usar Model o Map
+
         Cliente cliente = new Cliente();
         model.put("cliente", cliente);
         model.put("titulo", "Formulario de Cliente");
@@ -34,7 +39,25 @@ public class ClienteController {
     }
 
     @PostMapping(value = "/form")
-    public String guardar(Cliente cliente) {
+    public String guardar(@Valid Cliente cliente, BindingResult result, Model model) {
+
+        // El BindingResult nos permite saber si lo ingresado en el formulario es válido o no
+        // Se necesita de la anotación @Valid en el atributo de tipo Cliente
+        // Deben estar uno al lado del otro, el tercero debe ser el Model
+
+        if (result.hasErrors()) {
+
+            // No es necesario volver a enviar al cliente al formulario, ya que como se está
+            // trabajando con el parámetro Cliente (al inicio) este lo envía por defecto
+            // Sin embargo, esto funciona siempre y cuando el nombre (key) que se envía
+            // por el GET (enviándolo) sea el mismo que la clase en lowercase. Cliente -> cliente
+            // Pero si es distinto se requerirá usar la anotación @ModelAttribute y dentro
+            // como parámetro se ingresará el nombre (key) como se le envía por el GET
+
+            model.addAttribute("titulo", "Formulario de Clientes");
+            return "form";
+        }
+
         clienteDAO.save(cliente);
         return "redirect:listar";
     }
