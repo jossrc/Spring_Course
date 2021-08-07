@@ -16,19 +16,20 @@ import java.util.List;
 public class ClienteServiceImpl implements IClienteService {
 
     @Autowired
-    @Qualifier("clienteDaoJPA")
     private IClienteDao clienteDAO;
 
     @Override
     @Transactional(readOnly = true)
     public List<Cliente> findAll() {
-        return clienteDAO.findAll();
+        // El findAll retorna un Iterable
+        return (List<Cliente>) clienteDAO.findAll();
     }
 
     @Override
     @Transactional(readOnly = true)
     public Cliente findOne(Long id) {
-        return clienteDAO.findOne(id);
+        // El findById retorna un Optional<T>
+        return clienteDAO.findById(id).orElse(null);
     }
 
     @Override
@@ -40,6 +41,6 @@ public class ClienteServiceImpl implements IClienteService {
     @Override
     @Transactional
     public void delete(Long id) {
-        clienteDAO.delete(id);
+        clienteDAO.deleteById(id);
     }
 }
