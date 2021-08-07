@@ -1,7 +1,7 @@
 package com.bolsadeideas.springboot.app.controllers;
 
-import com.bolsadeideas.springboot.app.models.dao.IClienteDao;
 import com.bolsadeideas.springboot.app.models.entity.Cliente;
+import com.bolsadeideas.springboot.app.models.service.IClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -20,14 +20,14 @@ import java.util.Map;
 @SessionAttributes("cliente")
 public class ClienteController {
 
-    @Autowired // busca la clase que implementa la interfaz
-    @Qualifier("clienteDaoJPA") // Busca al Repository por su identificador (recomendado si muchas clases usan la misma interfaz)
-    private IClienteDao clienteDAO;
+    @Autowired
+    @Qualifier("clienteService")
+    private IClienteService clienteService;
 
     @GetMapping("listar")
     public String listar(Model model) {
         model.addAttribute("titulo", "Listado de clientes");
-        model.addAttribute("clientes", clienteDAO.findAll());
+        model.addAttribute("clientes", clienteService.findAll());
         return "listar";
     }
 
@@ -45,24 +45,12 @@ public class ClienteController {
     @PostMapping(value = "/form")
     public String guardar(@Valid Cliente cliente, BindingResult result, Model model, SessionStatus status) {
 
-        // El BindingResult nos permite saber si lo ingresado en el formulario es válido o no
-        // Se necesita de la anotación @Valid en el atributo de tipo Cliente
-        // Deben estar uno al lado del otro, el tercero debe ser el Model
-
         if (result.hasErrors()) {
-
-            // No es necesario volver a enviar al cliente al formulario, ya que como se está
-            // trabajando con el parámetro Cliente (al inicio) este lo envía por defecto
-            // Sin embargo, esto funciona siempre y cuando el nombre (key) que se envía
-            // por el GET (enviándolo) sea el mismo que la clase en lowercase. Cliente -> cliente
-            // Pero si es distinto se requerirá usar la anotación @ModelAttribute y dentro
-            // como parámetro se ingresará el nombre (key) como se le envía por el GET
-
             model.addAttribute("titulo", "Formulario de Clientes");
             return "form";
         }
 
-        clienteDAO.save(cliente);
+        clienteService.save(cliente);
         status.setComplete();// Limpia el session
         return "redirect:listar";
     }
@@ -73,7 +61,7 @@ public class ClienteController {
         Cliente cliente = null;
 
         if (id > 0) {
-            cliente = clienteDAO.findOne(id);
+            cliente = clienteService.findOne(id);
         } else {
             return "redirect:listar";
         }
@@ -87,7 +75,7 @@ public class ClienteController {
     public String eliminar(@PathVariable(value = "id") Long id) {
 
         if (id > 0) {
-            clienteDAO.delete(id);
+            clienteService.delete(id);
         }
 
         return "redirect:/listar";

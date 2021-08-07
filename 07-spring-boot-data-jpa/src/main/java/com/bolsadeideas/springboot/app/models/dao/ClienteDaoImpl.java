@@ -2,7 +2,6 @@ package com.bolsadeideas.springboot.app.models.dao;
 
 import com.bolsadeideas.springboot.app.models.entity.Cliente;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional; // Cuidado
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -17,20 +16,17 @@ public class ClienteDaoImpl implements IClienteDao {
     private EntityManager entityManager;
 
     @SuppressWarnings("unchecked")
-    @Transactional(readOnly = true) // Marcamos el método como transaccional, pero como es un listado se le pone como lectura
     @Override
     public List<Cliente> findAll() {
         return entityManager.createQuery("from Cliente").getResultList();
     }
 
     @Override
-    @Transactional(readOnly = true)
     public Cliente findOne(Long id) {
         return entityManager.find(Cliente.class, id);
     }
 
     @Override
-    @Transactional
     public void save(Cliente cliente) {
         if (cliente.getId() != null && cliente.getId() > 0) {
             entityManager.merge(cliente);
@@ -40,10 +36,8 @@ public class ClienteDaoImpl implements IClienteDao {
     }
 
     @Override
-    @Transactional
     public void delete(Long id) {
         entityManager.remove(findOne(id));
     }
-
 
 }
