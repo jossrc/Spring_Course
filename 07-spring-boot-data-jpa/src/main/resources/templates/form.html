@@ -23,7 +23,10 @@
         method="POST"
         th:object="${cliente}"
       >
+        <!--
+        No es necesario cuando se usa el Session
         <input type="hidden" class="form-control" id="txtId" th:field="*{id}" />
+        -->
         <div class="col-12">
           <label for="txtNombre" class="form-label">Nombre</label>
           <input
@@ -90,7 +93,7 @@
         </div>
 
         <div class="col-12">
-          <button type="submit" class="btn btn-primary">Registrar</button>
+          <button type="submit" class="btn btn-primary">Guardar</button>
         </div>
       </form>
     </div>

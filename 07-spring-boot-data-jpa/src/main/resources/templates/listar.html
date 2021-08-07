@@ -22,7 +22,7 @@
       ></h1>
 
       <a th:href="@{/form}" class="btn btn-success my-2">+ Crear Cliente</a>
-      
+
       <div class="table-responsive text-wrap mt-2">
         <table class="table table-hover">
           <thead>
@@ -32,6 +32,7 @@
               <th scope="col">Apellido</th>
               <th scope="col">Email</th>
               <th scope="col">Fecha</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -41,6 +42,18 @@
               <td th:text="${cliente.apellido}"></td>
               <td th:text="${cliente.email}"></td>
               <td th:text="${cliente.createdAt}"></td>
+              <td>
+                <a
+                  class="btn btn-success mx-2"
+                  th:href="@{/form/} + ${cliente.id}"
+                  th:text="Editar"
+                ></a>
+                <a
+                  class="btn btn-danger"
+                  th:href="@{/form/} + ${cliente.id}"
+                  th:text="Eliminar"
+                ></a>
+              </td>
             </tr>
           </tbody>
         </table>
