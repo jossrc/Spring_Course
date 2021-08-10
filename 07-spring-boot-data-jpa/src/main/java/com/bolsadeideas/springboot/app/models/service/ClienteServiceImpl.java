@@ -4,6 +4,8 @@ import com.bolsadeideas.springboot.app.models.dao.IClienteDao;
 import com.bolsadeideas.springboot.app.models.entity.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +25,13 @@ public class ClienteServiceImpl implements IClienteService {
     public List<Cliente> findAll() {
         // El findAll retorna un Iterable
         return (List<Cliente>) clienteDAO.findAll();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Cliente> findAll(Pageable pageable) {
+        // Retorna lista en páginas
+        return clienteDAO.findAll(pageable);
     }
 
     @Override

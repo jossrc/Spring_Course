@@ -1,12 +1,15 @@
 package com.bolsadeideas.springboot.app.models.service;
 
 import com.bolsadeideas.springboot.app.models.entity.Cliente;
+import org.springframework.data.domain.Page; // Importante
+import org.springframework.data.domain.Pageable; // Importante
 
 import java.util.List;
 
 public interface IClienteService {
 
     public List<Cliente> findAll();
+    public Page<Cliente> findAll(Pageable pageable);
 
     public void save(Cliente cliente);
 
