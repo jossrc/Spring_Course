@@ -41,21 +41,57 @@
         </div>
       </nav>
 
-      <div class="alert alert-success alert-dismissible fade show" role="alert" th:if="${success != null}">
+      <div
+        class="alert alert-success alert-dismissible fade show"
+        role="alert"
+        th:if="${success != null}"
+      >
         <span th:text="${success}"></span>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
       </div>
-      <div class="alert alert-danger alert-dismissible fade show" role="alert" th:if="${error != null}">
+      <div
+        class="alert alert-danger alert-dismissible fade show"
+        role="alert"
+        th:if="${error != null}"
+      >
         <span th:text="${error}"></span>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
       </div>
-      <div class="alert alert-warning alert-dismissible fade show" role="alert" th:if="${warning != null}">
+      <div
+        class="alert alert-warning alert-dismissible fade show"
+        role="alert"
+        th:if="${warning != null}"
+      >
         <span th:text="${warning}"></span>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
       </div>
-      <div class="alert alert-info alert-dismissible fade show" role="alert" th:if="${info != null}">
+      <div
+        class="alert alert-info alert-dismissible fade show"
+        role="alert"
+        th:if="${info != null}"
+      >
         <span th:text="${info}"></span>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
       </div>
     </header>
 
