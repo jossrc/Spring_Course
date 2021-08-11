@@ -11,6 +11,7 @@
         class="row g-3"
         method="POST"
         th:object="${cliente}"
+        enctype="multipart/form-data"
       >
         <!--
         No es necesario cuando se usa el Session
@@ -79,6 +80,10 @@
             th:if="${#fields.hasErrors('createdAt')}"
             th:errors="*{createdAt}"
           ></div>
+        </div>
+        <div class="col-12">
+          <label for="file" class="form-label">foto</label>
+          <input type="file" name="file" class="form-control" id="file">
         </div>
 
         <div class="col-12">
