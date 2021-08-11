@@ -3,6 +3,8 @@ package com.bolsadeideas.springboot.app.controllers;
 import com.bolsadeideas.springboot.app.models.entity.Cliente;
 import com.bolsadeideas.springboot.app.models.service.IClienteService;
 import com.bolsadeideas.springboot.app.util.paginator.PageRender;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
@@ -22,6 +24,7 @@ import java.nio.file.Files;
 import java.nio.file.Path; // importante
 import java.nio.file.Paths; // importante
 import java.util.Map;
+import java.util.UUID;
 
 @Controller
 @SessionAttributes("cliente")
@@ -30,6 +33,8 @@ public class ClienteController {
     @Autowired
     @Qualifier("clienteService")
     private IClienteService clienteService;
+
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
     @GetMapping("listar")
     public String listar(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
@@ -85,19 +90,27 @@ public class ClienteController {
         }
 
         if (!foto.isEmpty()) {
-            // Ruta completamente separada del proyecto
-            String rootPath = "C://Temp//uploads";
+
+            // Generamos un nombre único y que nunca se repita
+            String uniqueFilename = UUID.randomUUID().toString() + "_" + foto.getOriginalFilename();
+
+            // Ruta uploads concatenado con el filename del archivo.
+            Path rootPath = Paths.get("uploads").resolve(uniqueFilename);
+
+            // Convirtiendo la ruta a absoluta
+            Path rootAbsolutePath = rootPath.toAbsolutePath();
+
+            // Mostrando en consola para ver más información (opcional)
+            log.info("rootPath: " + rootPath); // Path relativo al proyecto
+            log.info("rootAbsolutePath: " + rootAbsolutePath); // path absoluto
+
             try {
-                // Obtenemos los bytes
-                byte[] bytes = foto.getBytes();
-                // Obtenemos la ruta completa (raíz + nombre ruta de la foto)
-                Path rutaCompleta = Paths.get(rootPath + "//"+foto.getOriginalFilename());
-                // Escribimos y guardamos la imagen
-                Files.write(rutaCompleta, bytes);
+                // Hace una copia de la foto en el path absoluto
+                Files.copy(foto.getInputStream(), rootAbsolutePath);
                 // Enviamos mensaje de confirmación
-                flash.addFlashAttribute("info", "Has subido correctamente '" + foto.getOriginalFilename()+"'");
+                flash.addFlashAttribute("info", "Has subido correctamente '" + uniqueFilename+"'");
                 // Guardamos en el objeto cliente
-                cliente.setFoto(foto.getOriginalFilename());
+                cliente.setFoto(uniqueFilename);
             } catch (IOException e) {
                 e.printStackTrace();
             }
