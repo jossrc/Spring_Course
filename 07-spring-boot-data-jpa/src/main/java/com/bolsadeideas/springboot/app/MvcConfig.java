@@ -13,17 +13,17 @@ public class MvcConfig implements WebMvcConfigurer {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
 
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        WebMvcConfigurer.super.addResourceHandlers(registry);
-
-        // Obtiene la ruta absoluta (desde el proyecto) y le agrega el file (al inicio)
-        String resourcePath = Paths.get("uploads").toAbsolutePath().toUri().toString();
-
-        log.info("resourcePath: "+ resourcePath);
-
-        registry.addResourceHandler("/uploads/**") // acepta todos los recursos dentro de uploads
-                .addResourceLocations(resourcePath); // se configura como estático
-
-    }
+//    @Override
+//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//        WebMvcConfigurer.super.addResourceHandlers(registry);
+//
+//        // Obtiene la ruta absoluta (desde el proyecto) y le agrega el file (al inicio)
+//        String resourcePath = Paths.get("uploads").toAbsolutePath().toUri().toString();
+//
+//        log.info("resourcePath: "+ resourcePath);
+//
+//        registry.addResourceHandler("/uploads/**") // acepta todos los recursos dentro de uploads
+//                .addResourceLocations(resourcePath); // se configura como estático
+//
+//    }
 }
