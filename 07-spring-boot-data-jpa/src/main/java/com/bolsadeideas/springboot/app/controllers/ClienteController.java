@@ -85,8 +85,8 @@ public class ClienteController {
         }
 
         if (!foto.isEmpty()) {
-            Path directorioRecursos = Paths.get("src//main//resources//static/uploads");
-            String rootPath = directorioRecursos.toFile().getAbsolutePath();
+            // Ruta completamente separada del proyecto
+            String rootPath = "C://Temp//uploads";
             try {
                 // Obtenemos los bytes
                 byte[] bytes = foto.getBytes();
